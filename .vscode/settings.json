@@ -1,0 +1,10 @@
+{
+    "java.project.sourcePaths": ["src"],
+    "java.project.outputPath": "bin",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar"
+    ],
+    "code-runner.executorMap": {
+        "java": "cd $workspaceRoot && javac -d bin -sourcepath src $fullFileName && PKG=$(grep -m1 '^package ' $fullFileName | sed 's/package //;s/;//;s/[[:space:]]//g') && java -cp bin ${PKG:+${PKG}.}$fileNameWithoutExt"
+    }
+}

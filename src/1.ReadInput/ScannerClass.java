@@ -22,7 +22,7 @@ public class ScannerClass {
 
         sc.close();
 
-    // other choice
+    // other choice we use biffer. Use it for large text
 
     BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
 

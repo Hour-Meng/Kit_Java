@@ -7,5 +7,6 @@
     ],
     "code-runner.executorMap": {
         "java": "cd $workspaceRoot && javac -cp lib/* -d bin -sourcepath src $fullFileName && PKG=$(grep -m1 '^package ' $fullFileName | sed 's/package //;s/;//;s/[[:space:]]//g') && java -cp bin:lib/* ${PKG:+${PKG}.}$fileNameWithoutExt"
-    }
+    },
+    "java.debug.settings.onBuildFailureProceed": true
 }

@@ -35,6 +35,12 @@ public class Regax2 {
 
         System.out.println(isValidEmail);
 
+
         sc.close();
+
+        if (isValidEmail){
+            String name = email.substring(0, email.indexOf("@"));
+            System.out.printf("\nHello %s\n", name);
+        }
     }    
 }

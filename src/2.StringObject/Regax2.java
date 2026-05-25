@@ -23,7 +23,7 @@ public class Regax2 {
     public static void main(String[] args) {
         //Create a regax checker
 
-        Pattern pt = Pattern.compile("^[a-zA-Z0-9.-.]+@+[a-zA-Z.-_]+\\.[a-zA-Z]{2,}$");
+        Pattern pt = Pattern.compile("^[a-zA-Z0-9._-]+@+[a-zA-Z.-_]+\\.[a-zA-Z]{2,}$");
 
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your email: ");

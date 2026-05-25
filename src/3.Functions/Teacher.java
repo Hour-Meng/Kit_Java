@@ -9,7 +9,6 @@ class School {
         System.out.println("Student study at room " + room + " with a " + Subject + " subject");
         
     }
-
 }
 
 class Student extends School{

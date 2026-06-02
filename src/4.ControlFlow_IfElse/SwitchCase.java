@@ -27,7 +27,7 @@ public class SwitchCase {
 
         System.out.println(day);
 
-        if(day == 'Monday'){
+        if(day == "Monday"){
             System.out.println("Monday");
         }
         else if(day == "Tuesday"){

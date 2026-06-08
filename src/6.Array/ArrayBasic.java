@@ -44,12 +44,12 @@ public class ArrayBasic {
         System.out.println("\n\n" + "This is for searching target \n\n");
         for (int j = 0; j < fruitArray.length ; j++){
             
-            if (fruitArray[j] == target){
+            if (fruitArray[j].equals(target)){
                 System.out.println("Found the target: " +  target + " at index " + (j));
                 break;
             }
 
-            else if (fruitArray[j] != target && j+1 == fruitArray.length){
+            else if (j+1 == fruitArray.length){
                 System.out.println("Not found");
             }
         }

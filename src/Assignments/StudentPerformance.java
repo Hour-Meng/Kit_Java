@@ -7,23 +7,23 @@ import java.util.Scanner;
 public class StudentPerformance {
 
     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
         List<String> subjects = new ArrayList<>();
         List<Integer> scores = new ArrayList<>();
 
 
-        subjectsList(subjects);
-        scoresList(scores, subjects);
+        subjectsList(subjects, sc);
+        scoresList(scores, subjects, sc);
         giveResult(scores, subjects);
         
+        sc.close();
     }
     
 
-    private static List<String> subjectsList(List<String> subjects ){
+    private static List<String> subjectsList(List<String> subjects , Scanner sc){
         // Variables
         String subject;
         String formattedSubject;
-
-        Scanner sc = new Scanner(System.in);
 
         // for loop for subjects
 
@@ -38,20 +38,24 @@ public class StudentPerformance {
             
         }
 
-        System.out.println("The 4 subjects are: ");
+        System.out.println("\nThe 4 subjects are: ");
         for (int i = 0 ; i < 4; i++){
-            System.out.print(subjects.get(i) + " ");
+            if ( i < 3){
+
+                System.out.print(subjects.get(i) + ", ");
+            }
+            else{
+                System.out.println(subjects.get(i));
+            }
         }
 
-        sc.close();
         return subjects;
     }
 
-    private static List<Integer> scoresList(List<Integer> scores, List<String> subjects){
+    private static List<Integer> scoresList(List<Integer> scores, List<String> subjects, Scanner sc){
             // Variables
             int score;
             
-            Scanner sc = new Scanner(System.in);
 
             System.out.println("\nPlease enter your score based on each subject: ");
 
@@ -75,7 +79,6 @@ public class StudentPerformance {
 
             }
         
-            sc.close();
 
        return scores; 
     }
@@ -83,14 +86,13 @@ public class StudentPerformance {
     private static void giveResult(List<Integer> scores, List<String> subjects){
 
         int total = 0;
-        double avg;
         String grade;
 
         for (int i = 0; i < 4; i++){
             total += scores.get(i);
         }
 
-        avg = total / 4;
+       double avg = total / 4.0;
 
         // Print out each score and subject with grades, then total and avg score
         System.out.println("\n===================================================================");

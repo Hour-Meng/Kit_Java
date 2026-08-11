@@ -1,30 +1,38 @@
-package Assignments;
-
-import java.util.Scanner;
+package Assignments.Assignment2;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-class StudentPerformanceAnalysis {
+
+/**
+ * ORIGINAL VERSION — kept for comparison with the updated StudentPerformance.java.
+ * This version uses ArrayList (not arrays) and does not include all assignment requirements.
+ */
+public class StudentPerformance_Original {
 
     public static void main(String[] args) {
-        
         Scanner sc = new Scanner(System.in);
-
-        // Lists
-        List<Integer> scores = new ArrayList<>();
         List<String> subjects = new ArrayList<>();
+        List<Integer> scores = new ArrayList<>();
 
-        // Variables 
+
+        subjectsList(subjects, sc);
+        scoresList(scores, subjects, sc);
+        giveResult(scores, subjects);
+        
+        sc.close();
+    }
+    
+
+    private static List<String> subjectsList(List<String> subjects , Scanner sc){
+        // Variables
         String subject;
         String formattedSubject;
-        String grade;
-        int score;
-        int total = 0;
-        double avg;
+
+        // for loop for subjects
 
         System.out.println("\n\nEnter 4 of your subjects");
 
-        // for loop for subjects
         for ( int i = 0; i < 4; i ++){
 
             System.out.print("Please enter the subject: ");
@@ -34,38 +42,61 @@ class StudentPerformanceAnalysis {
             
         }
 
-        System.out.println("The 4 subjects are: ");
+        System.out.println("\nThe 4 subjects are: ");
         for (int i = 0 ; i < 4; i++){
-            System.out.print(subjects.get(i) + " ");
+            if ( i < 3){
+
+                System.out.print(subjects.get(i) + ", ");
+            }
+            else{
+                System.out.println(subjects.get(i));
+            }
         }
 
-        System.out.println("\nPlease enter your score based on each subject: ");
+        return subjects;
+    }
 
-        // for loop for scores
-        for ( int i = 0; i < 4; i++){
-
-            System.out.print("Please enter the score of " + subjects.get(i) + ": ");
+    private static List<Integer> scoresList(List<Integer> scores, List<String> subjects, Scanner sc){
+            // Variables
+            int score;
             
-            score = sc.nextInt();
 
-            while (score < 0 || score > 100){
+            System.out.println("\nPlease enter your score based on each subject: ");
+
+            // for loop for scores
+            for ( int i = 0; i < 4; i++){
 
                 System.out.print("Please enter the score of " + subjects.get(i) + ": ");
                 
                 score = sc.nextInt();
 
+                while (score < 0 || score > 100){
+
+                    System.out.print("Please enter the score of " + subjects.get(i) + ": ");
+                    
+                    score = sc.nextInt();
+
+
+                }
+
+                scores.add(score);
 
             }
+        
 
-            scores.add(score);
+       return scores; 
+    }
 
-        }
+    private static void giveResult(List<Integer> scores, List<String> subjects){
+
+        int total = 0;
+        String grade;
 
         for (int i = 0; i < 4; i++){
             total += scores.get(i);
         }
 
-        avg = total / 4;
+       double avg = total / 4.0;
 
         // Print out each score and subject with grades, then total and avg score
         System.out.println("\n===================================================================");
@@ -98,14 +129,5 @@ class StudentPerformanceAnalysis {
         System.out.println("\n===================================================================");
         System.out.println("Total Score      Average Score");
         System.out.println(total + " ".repeat(18 - Integer.toString(total).length()) + avg);
-        sc.close();
     }
-
-        public static List<String> getStringList() {
-            List<String> list = new ArrayList<>();
-            list.add("Hello");
-            list.add("World");
-            return list;
-        }
-
 }

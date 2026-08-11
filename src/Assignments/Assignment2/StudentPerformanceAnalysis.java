@@ -1,34 +1,30 @@
-package Assignments;
+package Assignments.Assignment2;
+
+import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-
-public class StudentPerformance {
+class StudentPerformanceAnalysis {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        List<String> subjects = new ArrayList<>();
-        List<Integer> scores = new ArrayList<>();
-
-
-        subjectsList(subjects, sc);
-        scoresList(scores, subjects, sc);
-        giveResult(scores, subjects);
         
-        sc.close();
-    }
-    
+        Scanner sc = new Scanner(System.in);
 
-    private static List<String> subjectsList(List<String> subjects , Scanner sc){
-        // Variables
+        // Lists
+        List<Integer> scores = new ArrayList<>();
+        List<String> subjects = new ArrayList<>();
+
+        // Variables 
         String subject;
         String formattedSubject;
-
-        // for loop for subjects
+        String grade;
+        int score;
+        int total = 0;
+        double avg;
 
         System.out.println("\n\nEnter 4 of your subjects");
 
+        // for loop for subjects
         for ( int i = 0; i < 4; i ++){
 
             System.out.print("Please enter the subject: ");
@@ -38,61 +34,38 @@ public class StudentPerformance {
             
         }
 
-        System.out.println("\nThe 4 subjects are: ");
+        System.out.println("The 4 subjects are: ");
         for (int i = 0 ; i < 4; i++){
-            if ( i < 3){
-
-                System.out.print(subjects.get(i) + ", ");
-            }
-            else{
-                System.out.println(subjects.get(i));
-            }
+            System.out.print(subjects.get(i) + " ");
         }
 
-        return subjects;
-    }
+        System.out.println("\nPlease enter your score based on each subject: ");
 
-    private static List<Integer> scoresList(List<Integer> scores, List<String> subjects, Scanner sc){
-            // Variables
-            int score;
+        // for loop for scores
+        for ( int i = 0; i < 4; i++){
+
+            System.out.print("Please enter the score of " + subjects.get(i) + ": ");
             
+            score = sc.nextInt();
 
-            System.out.println("\nPlease enter your score based on each subject: ");
-
-            // for loop for scores
-            for ( int i = 0; i < 4; i++){
+            while (score < 0 || score > 100){
 
                 System.out.print("Please enter the score of " + subjects.get(i) + ": ");
                 
                 score = sc.nextInt();
 
-                while (score < 0 || score > 100){
-
-                    System.out.print("Please enter the score of " + subjects.get(i) + ": ");
-                    
-                    score = sc.nextInt();
-
-
-                }
-
-                scores.add(score);
 
             }
-        
 
-       return scores; 
-    }
+            scores.add(score);
 
-    private static void giveResult(List<Integer> scores, List<String> subjects){
-
-        int total = 0;
-        String grade;
+        }
 
         for (int i = 0; i < 4; i++){
             total += scores.get(i);
         }
 
-       double avg = total / 4.0;
+        avg = total / 4;
 
         // Print out each score and subject with grades, then total and avg score
         System.out.println("\n===================================================================");
@@ -125,5 +98,14 @@ public class StudentPerformance {
         System.out.println("\n===================================================================");
         System.out.println("Total Score      Average Score");
         System.out.println(total + " ".repeat(18 - Integer.toString(total).length()) + avg);
+        sc.close();
     }
+
+        public static List<String> getStringList() {
+            List<String> list = new ArrayList<>();
+            list.add("Hello");
+            list.add("World");
+            return list;
+        }
+
 }

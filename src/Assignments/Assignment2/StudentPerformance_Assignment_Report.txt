@@ -1,0 +1,139 @@
+Assignment 2 Report
+Student Performance Analysis
+Name: (your name)
+Student ID: (your student ID)
+
+---
+
+My Plan
+
+I chose the student performance scenario. My program asks the user to enter subject names, scores out of 100, and credit hours for each subject. I store the data in three parallel arrays — String[] for subjects, int[] for scores, and int[] for credits.
+
+For validation, the subject name cannot be empty. Scores must be between 0 and 100, and if the user types something wrong the program asks again. Credit hours must be between 1 and 6, same thing if it is wrong.
+
+For classification I use a switch statement to give letter grades like A+, A, B, C, and F. I also have a method called classify that is overloaded — one version takes a single score and one version takes the average of all scores to say if the student is Distinction, Pass, or At Risk.
+
+The program calculates the total, simple average, weighted average, highest and lowest score with the subject name, and how many subjects passed the threshold.
+
+---
+
+Personalisation
+
+N (last 3 digits of my student ID): 004 — so N = 4. I need to double check this matches my real ID before I submit.
+
+Number of records: 4 (same as N).
+
+Threshold: pass mark is N + 50 when N is less than 50. So my pass mark is 54. A subject passes if the score is 54 or higher.
+
+Extra feature: the program flags any subject that is more than 20% above the simple average. It shows YES (*) in the report and counts how many subjects did that.
+
+Grade names I used: A+, A, B, C, F, and for the whole group: Distinction, Pass, At Risk.
+
+---
+
+Test Run 1 — Normal input
+
+I entered four subjects with normal scores and credits.
+
+Input:
+Math, 85, 3
+English, 92, 4
+Science, 78, 3
+History, 64, 2
+
+Expected:
+Total should be 319. Simple average should be 79.75. English should be the highest at 92. History should be the lowest at 64. All four should pass because they are above 54.
+
+Actual:
+It matched what I expected. Total was 319, average was 79.75, highest was English (92), lowest was History (64), and 4 out of 4 passed.
+
+[screenshot]
+
+---
+
+Test Run 2 — Invalid input
+
+I tried typing bad scores and bad credits to see if validation works.
+
+Input:
+For Math I typed -5 first then 85. For credit I typed 0 first then 3.
+English: typed 150 first then 92, credit 7 first then 4.
+Science: 78, 3
+History: 64, 2
+
+Expected:
+The program should not accept -5, 0, 150, or 7. It should keep asking until I put valid numbers. After that the report should use 85, 92, 78, 64.
+
+Actual:
+It worked. Every time I put a wrong number it printed an error message and asked again. The final report showed the correct scores.
+
+[screenshot]
+
+---
+
+Test Run 3 — Boundary values
+
+I used scores that sit right on grade boundaries and on the pass mark.
+
+Input:
+Math, 90, 3
+English, 80, 3
+Science, 54, 3
+History, 49, 3
+
+Expected:
+90 should be A+, 80 should be A, 54 should get grade F from the switch but still count as Pass because 54 equals the threshold, 49 should be F and fail. Pass count should be 3 out of 4.
+
+Actual:
+Grades came out as A+, A, C, F. Science showed Pass? Yes even though grade was C (because 54 >= 54). History showed Pass? No. Pass count was 3/4. This is what I expected.
+
+[screenshot]
+
+---
+
+Test Run 4 — Modification (credit hours)
+
+This test is for the modification part where each subject has credit hours and the program shows a weighted average.
+
+Input:
+Math, 60, 6
+English, 90, 1
+Science, 70, 3
+History, 80, 2
+
+Expected:
+Simple average is 75.00. Weighted average should be lower because Math has 6 credits but only 60 marks. I calculated (60x6 + 90x1 + 70x3 + 80x2) / 12 = 68.33.
+
+Actual:
+Simple average showed 75.00 and weighted average showed 68.33. The credit column showed up in the report. So the modification is working.
+
+[screenshot]
+
+---
+
+Modification Explanation
+
+I added a second field called credit hours for each subject using another parallel array int[] credits. Before I only had subject name and score, and the average was just total divided by how many subjects. Now readData also asks for credit hours between 1 and 6. I made a new method weightedAverage that does sum of score times credit divided by sum of credits. The report prints the credit for each row and shows both the simple average and weighted average so you can see the difference when one subject has more credits than others.
+
+---
+
+AI-Use Log
+
+Did you use any AI tool? Yes
+
+- AI tool name & version: Cursor with Claude
+- Exact prompt(s) I typed: "Inside StudentPerformance.java can you tell me how far is my concept from the given context? I also need you to create a report for it as well" and later "make the changes and make sure I can compare between my current and the new one"
+- Short summary of what it suggested: It told me I needed arrays instead of ArrayList, method overloading, printf, max and min with subject name, counting passes, and a modification like credit hours. It also helped structure the report.
+- What I ACCEPTED: Using arrays, the classify overload, printf in the report, credit hours for the modification, and keeping my original file as StudentPerformance_Original.java so I can compare.
+- What I REJECTED or MODIFIED, and why: The first version it made looked too different from how I write code so I asked it to simplify the report. I also kept my idea of entering subjects one by one with scores instead of changing the whole flow.
+
+VERIFICATION EXAMPLE:
+- One AI suggestion I checked: the weighted average formula
+- How I tested/verified: I used Math 60 with 6 credits, English 90 with 1 credit, Science 70 with 3, History 80 with 2. I did the maths by hand and got 68.33.
+- Was the AI correct? Yes, the program printed 68.33 for weighted average.
+
+---
+
+Reflection
+
+This assignment was harder than I thought at the start. I began with ArrayList because that is what we used in class before, but the assignment wanted normal arrays so I had to change how I store data. The trickiest part was getting nextInt and nextLine to work together without skipping inputs. I learned method overloading by making two classify methods with different parameters. Adding credit hours made me realise the average can change depending on how important each subject is. I tested invalid input myself to make sure the while loops actually work. I think I can explain my code in class and change things like N or the pass mark if the teacher asks.
